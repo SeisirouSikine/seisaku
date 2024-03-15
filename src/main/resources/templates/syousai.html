@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>詳細ページ</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(128, 255, 255);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            padding-top: 30px;
+        }
+        .content-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        .memo-box {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .btn {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="content-box">
+                    <h3 class="text-center mb-4">詳細</h3>
+                    <div class="table-responsive"> 
+                        <table class="table table-striped">
+                            <thead>
+								<a>
+									<td th:text="*{taitol}"></td>
+								</a>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item, stat : ${detaillist}" th:object="${item}">
+                                  
+                                  
+                                    <td>
+                                        <div class="memo-box" th:text="*{memo}"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <a class="btn btn-warning" th:href="@{/top/}">トップページへ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

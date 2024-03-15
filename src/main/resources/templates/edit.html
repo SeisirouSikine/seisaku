@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>編集可能ページ</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(128, 255, 255);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            padding-top: 30px;
+        }
+        .content-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        .editable {
+            border: 1px dashed #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .editable:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .btn-save {
+            margin-top: 20px;
+        }
+        .form-control {
+            width: 100%; 
+            margin-bottom: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="content-box">
+                    <h3 class="text-center mb-4">ページの編集</h3>
+                    <div class="editable" contenteditable="true">
+						
+                          <tbody>
+                                <tr th:each="item, stat : ${detaillist}" th:object="${memobook}">
+                                  <form class="needs-validation" method="post" th:action="@{/edit/{id}}" th:object="${memobook}" novalidate>
+                                  
+                                    <td>
+                                      
+											<div class="mb-3">        
+                <textarea class="form-control" name="memo" rows="5" placeholder="メモの内容を入力してください" required></textarea>
+            </div> 
+										</div>
+                                    </td>
+                                    
+                              
+                                </tr>
+                            </tbody>
+                  
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-save mt-3" th:href="@{/top/}" >変更を保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const editableDiv = document.querySelector(".editable");
+            const btnSave = document.querySelector(".btn-save");
+
+            btnSave.addEventListener("click", function() {
+                const editedContent = editableDiv.innerHTML;
+               
+                console.log("Edited Content:", editedContent);
+                alert("変更が保存されました。");
+            });
+        });
+    </script>
+</body>
+</html>
